@@ -37,7 +37,7 @@ function App() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}>
         {renderContent()}
       </div>
     </div>
