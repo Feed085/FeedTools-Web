@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
+import logo from './assets/logo.png';
 import Home from './components/Home';
 import Packages from './components/Packages';
 import Gallery from './components/Gallery';
@@ -20,7 +21,7 @@ function App() {
     <div className="app-container">
       <nav className="navbar">
         <div className="nav-left">
-          <img src="/logo.png" alt="Logo" className="nav-logo" />
+          <img src={logo} alt="Logo" className="nav-logo" />
           <span className="nav-brand">FEEDTOOLS</span>
         </div>
         <div className="nav-center">
