@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ModernButton from './ModernButton';
+import CompassIcon from './CompassIcon';
+import PackagesIcon from './PackagesIcon';
 
 const Home = () => {
     const [videoIndex, setVideoIndex] = useState(0);
@@ -71,13 +73,13 @@ const Home = () => {
                     <ModernButton
                         text="Hemen Keşfet"
                         variant="primary"
-                        icon="✨"
+                        icon={<CompassIcon size={24} color="white" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
                         onClick={() => window.open('https://feedtools.app/download', '_blank')}
                     />
                     <ModernButton
                         text="Paketleri İncele"
                         variant="secondary"
-                        icon="💎"
+                        icon={<PackagesIcon size={24} color="var(--accent-secondary)" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
                         onClick={() => alert("Abonelik paketleri çok yakında burada olacak!")}
                     />
                 </div>
