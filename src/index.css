@@ -60,6 +60,7 @@ body {
   z-index: -2;
   overflow: hidden;
   pointer-events: none;
+  will-change: transform;
 }
 
 .bg-video {
@@ -365,7 +366,7 @@ body {
 
 .promotion-section {
   width: 100%;
-  padding: 180px 40px 0;
+  padding: 80px 40px 0;
   background: linear-gradient(to bottom,
       rgba(8, 9, 13, 0) 0%,
       var(--bg-dark) 10%,
@@ -385,7 +386,7 @@ body {
 
 .promo-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   max-width: 800px;
 }
 
@@ -408,11 +409,11 @@ body {
 
 .promo-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 800;
   color: white;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin-bottom: 12px;
+  margin-top: 8px;
   line-height: 1.2;
 }
 
@@ -426,7 +427,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 60px;
+  gap: 30px;
   width: 100%;
 }
 
@@ -506,21 +507,19 @@ body {
 
 .feature-item {
   display: flex;
-  gap: 20px;
-  padding: 24px;
-  border-radius: 20px;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03) 15%, rgba(255, 255, 255, 0.03) 85%, transparent);
   border: none;
   transition: all 0.3s ease;
   width: 100%;
 }
 
-
-
 .feature-icon-wrapper {
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
@@ -859,6 +858,7 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
+  will-change: transform;
 }
 
 .showcase-card:hover {
@@ -1012,6 +1012,18 @@ body {
   transform: rotate(90deg);
 }
 
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1022,14 +1034,135 @@ body {
   }
 }
 
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+/* --- RESPONSIVE DESIGN UPDATES --- */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 42px;
   }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .navbar {
+    padding: 0 20px;
+    margin: 10px 20px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .nav-center {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Hero Section */
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .modern-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .scroll-indicator {
+    margin-top: 30px;
+  }
+
+  /* Sections Padding */
+  .promotion-section,
+  .package-comparison-section,
+  .app-showcase-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .promo-header,
+  .pkg-header,
+  .showcase-header {
+    margin-bottom: 30px;
+  }
+
+  .promo-title,
+  .pkg-title,
+  .showcase-title {
+    font-size: 28px;
+  }
+
+  /* Feature List */
+  .promo-features {
+    align-items: stretch;
+  }
+
+  .feature-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Typography */
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .nav-brand {
+    font-size: 20px;
+  }
+
+  .promo-title,
+  .pkg-title,
+  .showcase-title {
+    font-size: 24px;
+  }
+
+  .hero-badge {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  /* Tables and Grids */
+  .comparison-table-wrapper {
+    padding: 5px;
+    border-radius: 12px;
+  }
+
+  /* Modals */
+  .lightbox-content {
+    max-width: 95%;
+  }
+
+  .lightbox-details h3 {
+    font-size: 20px;
   }
 }
