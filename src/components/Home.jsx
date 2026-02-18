@@ -4,6 +4,8 @@ import CompassIcon from './CompassIcon';
 import PackagesIcon from './PackagesIcon';
 
 import PromotionSection from './PromotionSection';
+import PackageComparison from './PackageComparison';
+import AppShowcase from './AppShowcase';
 
 const Home = () => {
     const [videoIndex, setVideoIndex] = useState(0);
@@ -108,6 +110,8 @@ const Home = () => {
             </div>
 
             <PromotionSection />
+            <PackageComparison />
+            <AppShowcase />
         </>
     );
 };
