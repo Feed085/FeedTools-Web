@@ -366,7 +366,7 @@ body {
 
 .promotion-section {
   width: 100%;
-  padding: 80px 40px 0;
+  padding: 150px 40px 0;
   background: linear-gradient(to bottom,
       rgba(8, 9, 13, 0) 0%,
       var(--bg-dark) 10%,
@@ -386,7 +386,7 @@ body {
 
 .promo-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   max-width: 800px;
 }
 
@@ -409,11 +409,11 @@ body {
 
 .promo-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 800;
   color: white;
-  margin-bottom: 12px;
-  margin-top: 8px;
+  margin-bottom: 20px;
+  margin-top: 10px;
   line-height: 1.2;
 }
 
@@ -427,7 +427,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 60px;
   width: 100%;
 }
 
@@ -507,9 +507,9 @@ body {
 
 .feature-item {
   display: flex;
-  gap: 16px;
-  padding: 16px;
-  border-radius: 16px;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03) 15%, rgba(255, 255, 255, 0.03) 85%, transparent);
   border: none;
   transition: all 0.3s ease;
@@ -517,9 +517,9 @@ body {
 }
 
 .feature-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
@@ -1100,7 +1100,12 @@ body {
   }
 
   /* Sections Padding */
-  .promotion-section,
+  .promotion-section {
+    padding-top: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .package-comparison-section,
   .app-showcase-section {
     padding-left: 15px;
