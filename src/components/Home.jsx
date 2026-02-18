@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import ModernButton from './ModernButton';
 import CompassIcon from './CompassIcon';
 import PackagesIcon from './PackagesIcon';
 
-import PromotionSection from './PromotionSection';
-import PackageComparison from './PackageComparison';
-import AppShowcase from './AppShowcase';
+// Lazy load heavy components
+const PromotionSection = lazy(() => import('./PromotionSection'));
+const PackageComparison = lazy(() => import('./PackageComparison'));
+const AppShowcase = lazy(() => import('./AppShowcase'));
+
+// Simple loading component
+const LoadingFallback = () => (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '50px', color: 'white' }}>
+        Yükleniyor...
+    </div>
+);
 
 const Home = () => {
+    // ... (rest of the component remains the same until return)
     const [videoIndex, setVideoIndex] = useState(0);
     const videos = [
         '/videos/rdr2.mp4',
@@ -64,6 +73,9 @@ const Home = () => {
                         onEnded={handleVideoEnd}
                         className="bg-video"
                         onCanPlay={(e) => e.target.play()}
+                        width="100%"
+                        height="100%"
+                        preload="auto"
                     >
                         <source src={videos[videoIndex]} type="video/mp4" />
                     </video>
@@ -109,9 +121,11 @@ const Home = () => {
                 </div>
             </div>
 
-            <PromotionSection />
-            <PackageComparison />
-            <AppShowcase />
+            <Suspense fallback={<LoadingFallback />}>
+                <PromotionSection />
+                <PackageComparison />
+                <AppShowcase />
+            </Suspense>
         </>
     );
 };
