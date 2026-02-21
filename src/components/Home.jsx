@@ -3,11 +3,20 @@ import ModernButton from './ModernButton';
 import CompassIcon from './CompassIcon';
 import PackagesIcon from './PackagesIcon';
 
+const videos = [
+    '/videos/rdr2.mp4',
+    '/videos/tlou.mp4',
+    '/videos/gow.mp4'
+];
+
+const titles = ["Sınırsız Eğlence", "Hızlı Kurulum", "Geniş Kütüphane", "FeedTools Güvencesiyle"];
+
 // Lazy load heavy components
 const PromotionSection = lazy(() => import('./PromotionSection'));
 const PackageComparison = lazy(() => import('./PackageComparison'));
 const AppShowcase = lazy(() => import('./AppShowcase'));
 const Testimonials = lazy(() => import('./Testimonials'));
+const FAQ = lazy(() => import('./FAQ'));
 
 // Simple loading component
 const LoadingFallback = () => (
@@ -16,17 +25,46 @@ const LoadingFallback = () => (
     </div>
 );
 
+const TypingBadge = () => {
+    const [currentText, setCurrentText] = useState('');
+    const [titleIndex, setTitleIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const type = () => {
+            const currentTitle = titles[titleIndex];
+
+            if (!isDeleting && currentText === currentTitle) {
+                setTimeout(() => setIsDeleting(true), 1500);
+            } else if (isDeleting && currentText === '') {
+                setIsDeleting(false);
+                setTitleIndex((prev) => (prev + 1) % titles.length);
+            } else {
+                const nextText = isDeleting
+                    ? currentTitle.substring(0, currentText.length - 1)
+                    : currentTitle.substring(0, currentText.length + 1);
+                setCurrentText(nextText);
+            }
+        };
+
+        const timer = setTimeout(type, isDeleting ? 50 : 150);
+        return () => clearTimeout(timer);
+    }, [currentText, isDeleting, titleIndex]);
+
+    return (
+        <div className="hero-badge">
+            <span className="hero-badge-dot"></span>
+            <span className="hero-badge-text">{currentText}</span>
+        </div>
+    );
+};
+
 const Home = () => {
     const videoRef = React.useRef(null);
     const heroRef = React.useRef(null);
     const [videoIndex, setVideoIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
     const savedTimeRef = React.useRef(0);
-    const videos = [
-        '/videos/rdr2.mp4',
-        '/videos/tlou.mp4',
-        '/videos/gow.mp4'
-    ];
 
     useEffect(() => {
         const options = {
@@ -71,31 +109,6 @@ const Home = () => {
         setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
     };
 
-    const [currentText, setCurrentText] = useState('');
-    const [titleIndex, setTitleIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const titles = ["Sınırsız Eğlence", "Hızlı Kurulum", "Geniş Kütüphane", "FeedTools Güvencesiyle"];
-
-    useEffect(() => {
-        const type = () => {
-            const currentTitle = titles[titleIndex];
-
-            if (!isDeleting && currentText === currentTitle) {
-                setTimeout(() => setIsDeleting(true), 1500);
-            } else if (isDeleting && currentText === '') {
-                setIsDeleting(false);
-                setTitleIndex((prev) => (prev + 1) % titles.length);
-            } else {
-                const nextText = isDeleting
-                    ? currentTitle.substring(0, currentText.length - 1)
-                    : currentTitle.substring(0, currentText.length + 1);
-                setCurrentText(nextText);
-            }
-        };
-
-        const timer = setTimeout(type, isDeleting ? 50 : 150);
-        return () => clearTimeout(timer);
-    }, [currentText, isDeleting, titleIndex]);
 
     const scrollToPromotion = () => {
         const element = document.getElementById('promotion-section');
@@ -132,10 +145,7 @@ const Home = () => {
                 </div>
 
                 <div className="hero-section">
-                    <div className="hero-badge">
-                        <span className="hero-badge-dot"></span>
-                        <span className="hero-badge-text">{currentText}</span>
-                    </div>
+                    <TypingBadge />
                     <h1 className="hero-title">Oyun Dünyasına<br /><span className="highlight">FeedTools</span> ile Adım At</h1>
                     <p className="hero-subtitle">
                         Steam kütüphanenizi en verimli şekilde yönetin. Aylık özel abonelik paketlerimizle
@@ -175,6 +185,7 @@ const Home = () => {
                 <PackageComparison />
                 <AppShowcase />
                 <Testimonials />
+                <FAQ />
             </Suspense>
         </>
     );
