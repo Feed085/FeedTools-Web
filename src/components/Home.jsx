@@ -20,6 +20,8 @@ const Home = () => {
     const videoRef = React.useRef(null);
     const heroRef = React.useRef(null);
     const [videoIndex, setVideoIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+    const savedTimeRef = React.useRef(0);
     const videos = [
         '/videos/rdr2.mp4',
         '/videos/tlou.mp4',
@@ -34,12 +36,13 @@ const Home = () => {
 
         const callback = (entries) => {
             entries.forEach(entry => {
-                if (videoRef.current) {
-                    if (entry.isIntersecting) {
-                        videoRef.current.play().catch(err => console.log("Video play failed:", err));
-                    } else {
-                        videoRef.current.pause();
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                } else {
+                    if (videoRef.current) {
+                        savedTimeRef.current = videoRef.current.currentTime;
                     }
+                    setIsVisible(false);
                 }
             });
         };
@@ -54,7 +57,15 @@ const Home = () => {
                 observer.unobserve(heroRef.current);
             }
         };
-    }, [videoIndex]); // Re-observe when video element changes due to key
+    }, [videoIndex]); // Re-observe when video element changes
+
+    // Restore time when video mounts
+    useEffect(() => {
+        if (isVisible && videoRef.current) {
+            videoRef.current.currentTime = savedTimeRef.current;
+            videoRef.current.play().catch(err => console.log("Video play failed:", err));
+        }
+    }, [isVisible]);
 
     const handleVideoEnd = () => {
         setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
@@ -97,31 +108,26 @@ const Home = () => {
         <>
             <div className="landing-page" ref={heroRef}>
                 <div className="video-background">
-                    <video
-                        ref={videoRef}
-                        key={videos[videoIndex]}
-                        autoPlay
-                        muted
-                        playsInline
-                        onEnded={handleVideoEnd}
-                        className="bg-video"
-                        onCanPlay={(e) => {
-                            // Only play if the element is currently visible
-                            const isVisible = heroRef.current &&
-                                heroRef.current.getBoundingClientRect().bottom > 0 &&
-                                heroRef.current.getBoundingClientRect().top < window.innerHeight;
-                            if (isVisible) {
-                                e.target.play().catch(err => console.log("Video auto-play failed:", err));
-                            } else {
-                                e.target.pause();
-                            }
-                        }}
-                        width="100%"
-                        height="100%"
-                        preload="auto"
-                    >
-                        <source src={videos[videoIndex]} type="video/mp4" />
-                    </video>
+                    {isVisible && (
+                        <video
+                            ref={videoRef}
+                            key={videos[videoIndex]}
+                            autoPlay
+                            muted
+                            playsInline
+                            onEnded={handleVideoEnd}
+                            className="bg-video"
+                            onLoadedMetadata={(e) => {
+                                // Restore time immediately when metadata is ready
+                                e.target.currentTime = savedTimeRef.current;
+                            }}
+                            width="100%"
+                            height="100%"
+                            preload="auto"
+                        >
+                            <source src={videos[videoIndex]} type="video/mp4" />
+                        </video>
+                    )}
                     <div className="video-overlay"></div>
                 </div>
 
