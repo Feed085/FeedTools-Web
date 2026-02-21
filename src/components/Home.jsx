@@ -147,7 +147,7 @@ const Home = () => {
                             text="Paketleri İncele"
                             variant="secondary"
                             icon={<PackagesIcon size={24} color="var(--accent-secondary)" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
-                            onClick={() => alert("Abonelik paketleri çok yakında burada olacak!")}
+                            onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
                         />
                     </div>
                 </div>

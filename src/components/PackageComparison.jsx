@@ -140,7 +140,7 @@ const PackageComparison = () => {
     };
 
     return (
-        <div className="package-comparison-section">
+        <div id="packages-section" className="package-comparison-section">
             <div className="pkg-container">
                 <div className="pkg-header">
                     <span className="pkg-badge">ABONELİK SEÇENEKLERİ</span>

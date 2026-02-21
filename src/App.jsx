@@ -46,7 +46,10 @@ function App() {
           </div>
           <div className="nav-center">
             <button className={`nav-link ${currentView === 'home' ? 'active' : ''}`} onClick={() => setCurrentView('home')}>ANASAYFA</button>
-            <button className={`nav-link ${currentView === 'packages' ? 'active' : ''}`} onClick={() => setCurrentView('packages')}>PAKETLER</button>
+            <button className="nav-link" onClick={() => {
+              if (currentView !== 'home') setCurrentView('home');
+              setTimeout(() => { document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' }); }, 100);
+            }}>PAKETLER</button>
             <button className={`nav-link ${currentView === 'gallery' ? 'active' : ''}`} onClick={() => setCurrentView('gallery')}>GALERİ</button>
             <button className="nav-link" onClick={() => window.open('https://discord.gg/feedtools', '_blank')}>DESTEK</button>
           </div>
