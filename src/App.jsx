@@ -4,6 +4,7 @@ import logo from './assets/logo.png';
 import Home from './components/Home';
 import Packages from './components/Packages';
 import Gallery from './components/Gallery';
+import Footer from './components/Footer';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -52,6 +53,7 @@ function App() {
         style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}
       >
         {renderContent()}
+        <Footer />
       </div>
     </div>
   );
