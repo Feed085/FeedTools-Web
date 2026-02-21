@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 
+// Import local images
+import anaSayfaImg from '../assets/uygulamayiKesfet/anaSayfa.png';
+import kutuphaneImg from '../assets/uygulamayiKesfet/kutuphane.png';
+import oyunDetaylariImg from '../assets/uygulamayiKesfet/oyunDetaylari.png';
+import bypassImg from '../assets/uygulamayiKesfet/ByPass.png';
+
 // Inline Icons
 const IconZoomIn = ({ size = 24, className }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -25,26 +31,25 @@ const AppShowcase = () => {
             id: 1,
             title: "Anasayfa",
             desc: "FeedTools'un modern ve kullanıcı dostu arayüzü sizi karşılıyor. Tüm oyunları kolaylıkla keşfedebilir, favorilerinize ekleyebilirsiniz.",
-            // Using placeholder images that look like UI screenshots
-            image: "https://placehold.co/800x500/0f172a/3b82f6?text=Anasayfa+Arayuz"
+            image: anaSayfaImg
         },
         {
             id: 2,
             title: "Kütüphane",
             desc: "Eklediğiniz tüm oyunları bir yerde görüntüleyin. İstediğiniz oyunu direkt oynatabilir, istemediklerinizi gizleyebilirsiniz.",
-            image: "https://placehold.co/800x500/0f172a/3b82f6?text=Kutuphane"
+            image: kutuphaneImg
         },
         {
             id: 3,
             title: "Oyun Detayları",
             desc: "Her oyunun detaylı bilgilerine bakın. DLC'leri ekleyip düzenleyebilir, online oyunlar için otomatik yama kurabilirsiniz.",
-            image: "https://placehold.co/800x500/0f172a/3b82f6?text=Oyun+Detaylari"
+            image: oyunDetaylariImg
         },
         {
             id: 4,
             title: "Bypass Sistemi",
             desc: "Aynı launcher ile açılan oyunların launcher'larını bypass'layarak sorunsuz oynayın. Tek tıkla otomatik işlem.",
-            image: "https://placehold.co/800x500/0f172a/3b82f6?text=Bypass+Sistemi"
+            image: bypassImg
         }
     ];
 

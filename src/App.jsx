@@ -7,6 +7,15 @@ import Gallery from './components/Gallery';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = (e) => {
+    if (e.target.scrollTop > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   const renderContent = () => {
     switch (currentView) {
@@ -19,7 +28,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <nav className="navbar">
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-left">
           <img src={logo} alt="Logo" className="nav-logo" />
           <span className="nav-brand">FEEDTOOLS</span>
@@ -37,7 +46,11 @@ function App() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}>
+      <div
+        className="main-content-scroll"
+        onScroll={handleScroll}
+        style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}
+      >
         {renderContent()}
       </div>
     </div>
