@@ -7,6 +7,7 @@ import PackagesIcon from './PackagesIcon';
 const PromotionSection = lazy(() => import('./PromotionSection'));
 const PackageComparison = lazy(() => import('./PackageComparison'));
 const AppShowcase = lazy(() => import('./AppShowcase'));
+const Testimonials = lazy(() => import('./Testimonials'));
 
 // Simple loading component
 const LoadingFallback = () => (
@@ -16,13 +17,44 @@ const LoadingFallback = () => (
 );
 
 const Home = () => {
-    // ... (rest of the component remains the same until return)
+    const videoRef = React.useRef(null);
+    const heroRef = React.useRef(null);
     const [videoIndex, setVideoIndex] = useState(0);
     const videos = [
         '/videos/rdr2.mp4',
         '/videos/tlou.mp4',
         '/videos/gow.mp4'
     ];
+
+    useEffect(() => {
+        const options = {
+            root: null, // use the viewport
+            threshold: 0.1 // 10% visibility is enough to play
+        };
+
+        const callback = (entries) => {
+            entries.forEach(entry => {
+                if (videoRef.current) {
+                    if (entry.isIntersecting) {
+                        videoRef.current.play().catch(err => console.log("Video play failed:", err));
+                    } else {
+                        videoRef.current.pause();
+                    }
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
+
+        return () => {
+            if (heroRef.current) {
+                observer.unobserve(heroRef.current);
+            }
+        };
+    }, [videoIndex]); // Re-observe when video element changes due to key
 
     const handleVideoEnd = () => {
         setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
@@ -63,16 +95,27 @@ const Home = () => {
 
     return (
         <>
-            <div className="landing-page">
+            <div className="landing-page" ref={heroRef}>
                 <div className="video-background">
                     <video
+                        ref={videoRef}
                         key={videos[videoIndex]}
                         autoPlay
                         muted
                         playsInline
                         onEnded={handleVideoEnd}
                         className="bg-video"
-                        onCanPlay={(e) => e.target.play()}
+                        onCanPlay={(e) => {
+                            // Only play if the element is currently visible
+                            const isVisible = heroRef.current &&
+                                heroRef.current.getBoundingClientRect().bottom > 0 &&
+                                heroRef.current.getBoundingClientRect().top < window.innerHeight;
+                            if (isVisible) {
+                                e.target.play().catch(err => console.log("Video auto-play failed:", err));
+                            } else {
+                                e.target.pause();
+                            }
+                        }}
                         width="100%"
                         height="100%"
                         preload="auto"
@@ -125,6 +168,7 @@ const Home = () => {
                 <PromotionSection />
                 <PackageComparison />
                 <AppShowcase />
+                <Testimonials />
             </Suspense>
         </>
     );
