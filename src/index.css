@@ -138,11 +138,16 @@ body {
 
 /* Ensure subsequent sections blend softly with much shorter fade distances */
 .package-comparison-section,
-.app-showcase-section,
-.testimonials-section {
+.app-showcase-section {
   margin-top: -80px;
   mask-image: linear-gradient(to bottom, transparent 0%, black 60px, black 95%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 60px, black 95%, transparent 100%);
+}
+
+.testimonials-section {
+  margin-top: -80px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 60px, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 60px, black 100%);
 }
 
 /* Ambient glow at the top of each section to blur the boundary */
@@ -1288,13 +1293,10 @@ body {
 /* Footer Section */
 .footer-section {
   background: var(--bg-dark);
-  border-top: none;
-  padding: 60px 0 40px;
+  border-top: 1px solid var(--glass-border);
+  padding: 40px 0 30px;
   position: relative;
-  /* Soft top fade to blend with testimonials */
-  mask-image: linear-gradient(to bottom, transparent 0%, black 40px, black 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40px, black 100%);
-  margin-top: -40px;
+  z-index: 10;
 }
 
 .footer-container {
@@ -1306,16 +1308,14 @@ body {
 .footer-main {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  /* Reduced gap from 60px */
-  margin-bottom: 40px;
-  /* Reduced margin from 60px */
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
 .footer-brand-info {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .footer-logo-row {
@@ -1364,7 +1364,7 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .footer-links-list a {
@@ -1410,17 +1410,17 @@ body {
 .footer-section::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
+  top: -1px;
+  left: 0;
+  width: 100%;
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--accent-primary) 30%, var(--accent-secondary) 70%, transparent 100%);
-  opacity: 0.3;
+  opacity: 0.6;
+  z-index: 1;
 }
 
 .footer-bottom {
-  padding-top: 30px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   display: flex;
   justify-content: space-between;
