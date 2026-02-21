@@ -37,7 +37,7 @@ function App() {
         </div>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}>
+      <div className="main-content-scroll" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', scrollBehavior: 'smooth' }}>
         {renderContent()}
       </div>
     </div>
