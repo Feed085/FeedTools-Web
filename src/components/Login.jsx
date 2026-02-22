@@ -9,6 +9,7 @@ import re4Img from '../assets/loginheroslider/RE4.jpg';
 import spidermanImg from '../assets/loginheroslider/Spiderman2.jpeg';
 import tlouImg from '../assets/loginheroslider/TLOU2.jpg';
 import unchartedImg from '../assets/loginheroslider/Uncharted.jpg';
+import { login } from '../api/auth';
 
 const sliderData = [
     { img: gtaImg, colors: ['rgba(34, 197, 94, 0.75)', 'rgba(59, 130, 246, 0.75)', 'rgba(245, 158, 11, 0.65)'] }, // GTA V: Bright Green, Sky Blue, Sunset Orange
@@ -23,6 +24,8 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -31,13 +34,25 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
         return () => clearInterval(timer);
     }, []);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (email && password) {
-            setIsLoggedIn(true);
-            setCurrentView('home');
-        } else {
-            alert("Lütfen tüm alanları doldurun.");
+        setError('');
+        setLoading(true);
+
+        try {
+            const data = await login({ email, password });
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                setIsLoggedIn(true);
+                setCurrentView('home');
+            } else {
+                setError('Geçersiz sunucu yanıtı. Token bulunamadı.');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            setError(err.response?.data?.error || err.response?.data?.message || 'Giriş yapılamadı. Lütfen e-posta ve şifrenizi kontrol edin.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -84,6 +99,7 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                     <p className="auth-form-subtitle">FeedTools hesabınıza giriş yaparak favori oyunlarınıza erişmeye devam edin.</p>
 
                     <form onSubmit={handleLogin}>
+                        {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
                         <div className="auth-form-group">
                             <label>E-posta Adresi</label>
                             <input
@@ -93,6 +109,7 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="ornek@email.com"
                                 required
+                                disabled={loading}
                             />
                         </div>
                         <div className="auth-form-group">
@@ -113,11 +130,12 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
                                 required
+                                disabled={loading}
                             />
                         </div>
 
-                        <button type="submit" className="auth-submit-btn">
-                            GİRİŞ YAP
+                        <button type="submit" className="auth-submit-btn" disabled={loading}>
+                            {loading ? 'GİRİŞ YAPILIYOR...' : 'GİRİŞ YAP'}
                         </button>
                     </form>
 

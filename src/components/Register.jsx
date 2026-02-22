@@ -9,6 +9,7 @@ import re4Img from '../assets/loginheroslider/RE4.jpg';
 import spidermanImg from '../assets/loginheroslider/Spiderman2.jpeg';
 import tlouImg from '../assets/loginheroslider/TLOU2.jpg';
 import unchartedImg from '../assets/loginheroslider/Uncharted.jpg';
+import { register } from '../api/auth';
 
 const sliderData = [
     { img: tlouImg, colors: ['rgba(22, 101, 52, 0.7)', 'rgba(100, 116, 139, 0.7)', 'rgba(255, 255, 255, 0.4)'] }, // TLOU2: Forest Green, Muted Gray, White Fog
@@ -24,6 +25,8 @@ const Register = ({ setCurrentView }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -32,13 +35,20 @@ const Register = ({ setCurrentView }) => {
         return () => clearInterval(timer);
     }, []);
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        if (username && email && password) {
+        setError('');
+        setLoading(true);
+
+        try {
+            await register({ username, email, password });
             alert("Kayıt başarılı! Lütfen giriş yapın.");
             setCurrentView('login');
-        } else {
-            alert("Lütfen tüm alanları doldurun.");
+        } catch (err) {
+            console.error('Registration error:', err);
+            setError(err.response?.data?.error || err.response?.data?.message || 'Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -83,6 +93,7 @@ const Register = ({ setCurrentView }) => {
                     <p className="auth-form-subtitle">Aramıza katıl ve ayrıcalıklardan hemen faydalanmaya başla!</p>
 
                     <form onSubmit={handleRegister}>
+                        {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
                         <div className="auth-form-group">
                             <label>Kullanıcı Adı</label>
                             <input
@@ -92,6 +103,7 @@ const Register = ({ setCurrentView }) => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 placeholder="kullanici_adi"
                                 required
+                                disabled={loading}
                             />
                         </div>
                         <div className="auth-form-group">
@@ -103,6 +115,7 @@ const Register = ({ setCurrentView }) => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="ornek@email.com"
                                 required
+                                disabled={loading}
                             />
                         </div>
                         <div className="auth-form-group">
@@ -114,11 +127,12 @@ const Register = ({ setCurrentView }) => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
                                 required
+                                disabled={loading}
                             />
                         </div>
 
-                        <button type="submit" className="auth-submit-btn">
-                            KAYIT OL
+                        <button type="submit" className="auth-submit-btn" disabled={loading}>
+                            {loading ? 'KAYDEDİLİYOR...' : 'KAYIT OL'}
                         </button>
                     </form>
 

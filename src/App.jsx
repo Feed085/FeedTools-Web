@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
+import { getMe } from './api/auth';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -21,6 +22,23 @@ function App() {
 
   // Tab mapping for indicator
   const [activeTab, setActiveTab] = useState('home');
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          await getMe();
+          setIsLoggedIn(true);
+        } catch (err) {
+          console.error('Session persistence error:', err);
+          localStorage.removeItem('token');
+          setIsLoggedIn(false);
+        }
+      }
+    };
+    checkAuth();
+  }, []);
 
   useEffect(() => {
     const activeLink = linksRef.current[activeTab];
@@ -143,7 +161,15 @@ function App() {
                 <button className="modern-button primary-button" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => window.open('https://feedtools.app/download', '_blank')}>
                   UYGULAMAYI İNDİR
                 </button>
-                <button className="modern-button secondary-button" style={{ padding: '10px 20px', fontSize: '14px', background: 'transparent', border: '1px solid var(--border-color)', color: 'white' }} onClick={() => setIsLoggedIn(false)}>
+                <button
+                  className="modern-button secondary-button"
+                  style={{ padding: '10px 20px', fontSize: '14px', background: 'transparent', border: '1px solid var(--border-color)', color: 'white' }}
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                    setIsLoggedIn(false);
+                    setCurrentView('home');
+                  }}
+                >
                   ÇIKIŞ YAP
                 </button>
               </>
