@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 // Import local images
 import anaSayfaImg from '../assets/uygulamayiKesfet/anaSayfa.png';
@@ -49,7 +50,8 @@ const AppShowcase = () => {
             id: 4,
             title: "Bypass Sistemi",
             desc: "Aynı launcher ile açılan oyunların launcher'larını bypass'layarak sorunsuz oynayın. Tek tıkla otomatik işlem.",
-            image: bypassImg
+            image: bypassImg,
+            position: "center top" // This pulls the image content down to align with the top
         }
     ];
 
@@ -75,22 +77,28 @@ const AppShowcase = () => {
                     {showcaseData.map((item) => (
                         <div key={item.id} className="showcase-card" onClick={() => openModal(item)}>
                             <div className="card-image-wrapper">
-                                <img src={item.image} alt={item.title} className="card-image" />
-                                <div className="card-overlay">
-                                    <IconZoomIn size={32} className="zoom-icon" />
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="card-image"
+                                    style={{ objectPosition: item.position || 'center' }}
+                                />
+                                <div className="card-content-overlay">
+                                    <h3 className="card-title">{item.title}</h3>
+                                    <p className="card-desc">{item.desc}</p>
+                                    <div className="card-action">
+                                        <IconZoomIn size={20} />
+                                        <span>Detayları Gör</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="card-content">
-                                <h3 className="card-title">{item.title}</h3>
-                                <p className="card-desc">{item.desc}</p>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Lightbox Modal */}
-            {selectedImage && (
+            {/* Lightbox Modal - Rendered via Portal to avoid parent transform issues */}
+            {selectedImage && createPortal(
                 <div className="lightbox-overlay" onClick={closeModal}>
                     <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
                         <button className="lightbox-close" onClick={closeModal}>
@@ -102,7 +110,8 @@ const AppShowcase = () => {
                             <p>{selectedImage.desc}</p>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );
