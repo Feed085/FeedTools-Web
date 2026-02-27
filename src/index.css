@@ -291,6 +291,98 @@ body {
   color: white;
 }
 
+/* Language Selector Styles */
+.language-selector-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: white;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  right: 0;
+  background: rgba(15, 17, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 8px;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1001;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  animation: dropdownFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+  width: 100%;
+}
+
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.lang-option.active {
+  background: rgba(var(--accent-primary-rgb, 96, 165, 250), 0.1);
+  color: var(--accent-primary);
+}
+
+.lang-flag {
+  font-size: 18px;
+}
+
+.lang-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .landing-page {
   min-height: 100vh;
   display: flex;
@@ -442,11 +534,25 @@ body {
 .mouse {
   width: 26px;
   height: 42px;
-  border: 2px solid var(--text-secondary);
+  border: 2px solid #fff;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   padding-top: 8px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+  animation: mouseGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes mouseGlow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: scale(1);
+  }
+
+  to {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
 }
 
 .wheel {
@@ -477,11 +583,12 @@ body {
   display: block;
   width: 10px;
   height: 10px;
-  border-bottom: 2px solid var(--text-secondary);
-  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
   transform: rotate(45deg);
   margin: -4px;
   animation: scrollArrow 2s infinite;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
 .arrow span:nth-child(2) {

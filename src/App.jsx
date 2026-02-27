@@ -9,11 +9,17 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import { getMe } from './api/auth';
+import { useLanguage } from './LanguageContext';
+import { languages } from './translations';
+import GlobeIcon from './components/GlobeIcon';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { lang, setLang, t } = useLanguage();
+  const [showLangMenu, setShowLangMenu] = useState(false);
 
   // Navbar indicator state
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
@@ -120,7 +126,7 @@ function App() {
                 document.querySelector('.main-content-scroll')?.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              ANASAYFA
+              {t('nav', 'home')}
             </button>
             <button
               ref={el => linksRef.current['packages'] = el}
@@ -131,7 +137,7 @@ function App() {
                 setTimeout(() => { document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' }); }, 100);
               }}
             >
-              PAKETLER
+              {t('nav', 'packages')}
             </button>
             <button
               ref={el => linksRef.current['faq'] = el}
@@ -142,7 +148,7 @@ function App() {
                 setTimeout(() => { document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' }); }, 100);
               }}
             >
-              SSS
+              {t('nav', 'faq')}
             </button>
             <button
               ref={el => linksRef.current['support'] = el}
@@ -152,14 +158,14 @@ function App() {
                 window.open('https://discord.gg/feedtools', '_blank');
               }}
             >
-              DESTEK
+              {t('nav', 'support')}
             </button>
           </div>
           <div className="nav-right" style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             {isLoggedIn ? (
               <>
                 <button className="modern-button primary-button" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => window.open('https://feedtools.app/download', '_blank')}>
-                  UYGULAMAYI İNDİR
+                  {t('nav', 'download')}
                 </button>
                 <button
                   className="modern-button secondary-button"
@@ -170,19 +176,47 @@ function App() {
                     setCurrentView('home');
                   }}
                 >
-                  ÇIKIŞ YAP
+                  {t('nav', 'logout')}
                 </button>
               </>
             ) : (
               <>
                 <button className="nav-link" onClick={() => setCurrentView('login')} style={{ padding: '10px 20px', fontSize: '14px', margin: 0 }}>
-                  GİRİŞ YAP
+                  {t('nav', 'login')}
                 </button>
                 <button className="modern-button primary-button" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => setCurrentView('register')}>
-                  KAYIT OL
+                  {t('nav', 'register')}
                 </button>
               </>
             )}
+
+            <div className="language-selector-wrapper">
+              <button
+                className="lang-btn"
+                onClick={() => setShowLangMenu(!showLangMenu)}
+                title="Change Language"
+              >
+                <GlobeIcon size={20} color="white" />
+              </button>
+
+              {showLangMenu && (
+                <div className="lang-dropdown">
+                  {languages.map(l => (
+                    <button
+                      key={l.code}
+                      className={`lang-option ${lang === l.code ? 'active' : ''}`}
+                      onClick={() => {
+                        setLang(l.code);
+                        setShowLangMenu(false);
+                      }}
+                    >
+                      <span className="lang-flag">{l.flag}</span>
+                      <span className="lang-name">{l.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </nav>
       )}

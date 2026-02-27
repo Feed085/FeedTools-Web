@@ -1,19 +1,21 @@
 import React from 'react';
 import { LibraryIcon, SupportIcon, SecurityIcon } from './FeatureIcons';
 import VideoCameraIcon from './VideoCameraIcon';
+import { useLanguage } from '../LanguageContext';
 
 const PromotionSection = () => {
+    const { t } = useLanguage();
     return (
         <div className="promotion-section" id="promotion-section">
             <div className="promo-container">
                 <div className="promo-header">
                     <span className="promo-badge">
                         <VideoCameraIcon size={20} color="white" style={{ marginRight: '4px' }} />
-                        PLATFORM TANITIMI
+                        {t('promo', 'badge')}
                     </span>
-                    <h2 className="promo-title">FeedTools'un <span className="highlight">Gücünü Keşfet</span></h2>
+                    <h2 className="promo-title">{t('promo', 'title')}</h2>
                     <p className="promo-subtitle">
-                        FeedTools platformunun nasıl çalıştığını ve tüm harika özelliklerini video aracılığıyla öğrenin
+                        {t('promo', 'subtitle')}
                     </p>
                 </div>
 
@@ -37,21 +39,21 @@ const PromotionSection = () => {
                     <div className="promo-features">
                         <FeatureItem
                             icon={<LibraryIcon size={24} color="#60a5fa" />}
-                            title="Geniş Steam Kütüphanesi"
-                            desc="35.000+ oyunla Steam'in en geniş koleksiyonuna erişim sağla. Her türden oyun bulabilirsin."
+                            title={t('promo', 'feature1')}
+                            desc={t('promo', 'feature1_desc')}
                             color="blue"
                         />
                         <FeatureItem
                             icon={<SupportIcon size={24} color="#34d399" />}
-                            title="7/24 Destek"
-                            desc="Sorun mu yaşadın? 24 saat çalışan destek ekibimiz her zaman sana yardımcı olmaya hazır."
+                            title={t('promo', 'feature3')}
+                            desc={t('promo', 'feature3_desc')}
                             color="green"
 
                         />
                         <FeatureItem
                             icon={<SecurityIcon size={24} color="#fbbf24" />}
-                            title="Hızlı ve Güvenli"
-                            desc="Oyunları saniyeler içinde indir ve oynat. Güvenli sunucularımız tüm verilerinizi korur."
+                            title={t('promo', 'feature2')}
+                            desc={t('promo', 'feature2_desc')}
                             color="yellow"
                         />
                     </div>

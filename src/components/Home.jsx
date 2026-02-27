@@ -2,14 +2,13 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import ModernButton from './ModernButton';
 import CompassIcon from './CompassIcon';
 import PackagesIcon from './PackagesIcon';
+import { useLanguage } from '../LanguageContext';
 
 const videos = [
     '/videos/rdr2.mp4',
     '/videos/tlou.mp4',
     '/videos/gow.mp4'
 ];
-
-const titles = ["Sınırsız Eğlence", "Hızlı Kurulum", "Geniş Kütüphane", "FeedTools Güvencesiyle"];
 
 // Lazy load heavy components
 const PromotionSection = lazy(() => import('./PromotionSection'));
@@ -26,6 +25,8 @@ const LoadingFallback = () => (
 );
 
 const TypingBadge = () => {
+    const { t, lang } = useLanguage();
+    const titles = t('hero', 'badge');
     const [currentText, setCurrentText] = useState('');
     const [titleIndex, setTitleIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -49,7 +50,7 @@ const TypingBadge = () => {
 
         const timer = setTimeout(type, isDeleting ? 50 : 150);
         return () => clearTimeout(timer);
-    }, [currentText, isDeleting, titleIndex]);
+    }, [currentText, isDeleting, titleIndex, titles]);
 
     return (
         <div className="hero-badge">
@@ -60,6 +61,7 @@ const TypingBadge = () => {
 };
 
 const Home = () => {
+    const { t, lang } = useLanguage();
     const videoRef = React.useRef(null);
     const heroRef = React.useRef(null);
     const [videoIndex, setVideoIndex] = useState(0);
@@ -145,22 +147,20 @@ const Home = () => {
                 </div>
 
                 <div className="hero-section">
-                    <TypingBadge />
-                    <h1 className="hero-title">Oyun Dünyasına<br /><span className="highlight">FeedTools</span> ile Adım At</h1>
+                    <TypingBadge key={lang} />
+                    <h1 className="hero-title">{t('hero', 'title1')}<br /><span className="highlight">{t('hero', 'title2')}</span> {t('hero', 'title3')}</h1>
                     <p className="hero-subtitle">
-                        Steam kütüphanenizi en verimli şekilde yönetin. Aylık özel abonelik paketlerimizle
-                        geniş oyun arşivlerine düşük maliyetle erişin. Favori oyunlarınıza anında ulaşın,
-                        kütüphanenizi tek bir tıkla zenginleştirmenin ve sınırsız eğlencenin tadını çıkarın.
+                        {t('hero', 'subtitle')}
                     </p>
                     <div className="hero-actions">
                         <ModernButton
-                            text="Hemen Keşfet"
+                            text={t('hero', 'action1')}
                             variant="primary"
                             icon={<CompassIcon size={24} color="white" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
                             onClick={() => window.open('https://feedtools.app/download', '_blank')}
                         />
                         <ModernButton
-                            text="Paketleri İncele"
+                            text={t('hero', 'action2')}
                             variant="secondary"
                             icon={<PackagesIcon size={24} color="var(--accent-secondary)" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
                             onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
