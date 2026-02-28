@@ -9,7 +9,7 @@ import re4Img from '../assets/loginheroslider/RE4.jpg';
 import spidermanImg from '../assets/loginheroslider/Spiderman2.jpeg';
 import tlouImg from '../assets/loginheroslider/TLOU2.jpg';
 import unchartedImg from '../assets/loginheroslider/Uncharted.jpg';
-import { login } from '../api/auth';
+import { login, verifyCode, resendOtpCode } from '../api/auth';
 
 const sliderData = [
     { img: gtaImg, colors: ['rgba(34, 197, 94, 0.75)', 'rgba(59, 130, 246, 0.75)', 'rgba(245, 158, 11, 0.65)'] }, // GTA V: Bright Green, Sky Blue, Sunset Orange
@@ -26,6 +26,8 @@ const Login = ({ setIsLoggedIn, setCurrentView, showNotification }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [step, setStep] = useState(1); // 1: Login, 2: OTP
+    const [otp, setOtp] = useState('');
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -41,14 +43,12 @@ const Login = ({ setIsLoggedIn, setCurrentView, showNotification }) => {
 
         try {
             const data = await login({ email, password });
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                setIsLoggedIn(true);
-                setCurrentView('home');
-                showNotification("Giriş başarılı! Hoş geldiniz.", "success");
+            if (data.success) {
+                setStep(2);
+                showNotification("Doğrulama kodu e-postanıza gönderildi.", "success");
             } else {
-                setError('Geçersiz sunucu yanıtı. Token bulunamadı.');
-                showNotification('Geçersiz sunucu yanıtı. Token bulunamadı.', "error");
+                setError(data.error || 'Giriş başarısız.');
+                showNotification(data.error || 'Giriş başarısız.', "error");
             }
         } catch (err) {
             console.error('Login error:', err);
@@ -56,6 +56,50 @@ const Login = ({ setIsLoggedIn, setCurrentView, showNotification }) => {
                 err.response?.data?.message ||
                 (err.response?.data?.errors && err.response?.data?.errors[0]?.msg) ||
                 'Giriş yapılamadı. Lütfen e-posta ve şifrenizi kontrol edin.';
+            setError(errorMsg);
+            showNotification(errorMsg, "error");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleVerifyOTP = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try {
+            const data = await verifyCode(email, otp);
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                setIsLoggedIn(true);
+                setCurrentView('home');
+                showNotification("Giriş başarılı! Hoş geldiniz.", "success");
+            } else {
+                setError('Geçersiz kod.');
+                showNotification('Geçersiz kod.', "error");
+            }
+        } catch (err) {
+            console.error('OTP error:', err);
+            const errorMsg = err.response?.data?.error || 'Doğrulama başarısız.';
+            setError(errorMsg);
+            showNotification(errorMsg, "error");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResendOTP = async () => {
+        setError('');
+        setLoading(true);
+        try {
+            const data = await resendOtpCode(email);
+            if (data.success) {
+                showNotification("Doğrulama kodu tekrar gönderildi.", "success");
+            }
+        } catch (err) {
+            console.error('Resend error:', err);
+            const errorMsg = err.response?.data?.error || 'Kod gönderilemedi.';
             setError(errorMsg);
             showNotification(errorMsg, "error");
         } finally {
@@ -102,49 +146,89 @@ const Login = ({ setIsLoggedIn, setCurrentView, showNotification }) => {
                         <img src={logo} alt="Gamonk Logo" />
                     </div>
 
-                    <h2 className="auth-form-title">Giriş Yap</h2>
-                    <p className="auth-form-subtitle">Gamonk hesabınıza giriş yaparak favori oyunlarınıza erişmeye devam edin.</p>
+                    <h2 className="auth-form-title">{step === 1 ? 'Giriş Yap' : 'Kodu Doğrula'}</h2>
+                    <p className="auth-form-subtitle">
+                        {step === 1
+                            ? 'Gamonk hesabınıza giriş yaparak favori oyunlarınıza erişmeye devam edin.'
+                            : `Lütfen ${email} adresine gönderilen 6 haneli kodu girin.`}
+                    </p>
 
-                    <form onSubmit={handleLogin}>
-                        {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
-                        <div className="auth-form-group">
-                            <label>E-posta Adresi</label>
-                            <input
-                                type="email"
-                                className="auth-input"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="ornek@email.com"
-                                required
-                                disabled={loading}
-                            />
-                        </div>
-                        <div className="auth-form-group">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                <label style={{ margin: 0 }}>Şifre</label>
-                                <span
-                                    className="auth-switch-link"
-                                    style={{ fontSize: '13px', marginLeft: 0, fontWeight: '500' }}
-                                    onClick={() => setCurrentView('forgotPassword')}
-                                >
-                                    Şifremi Unuttum
+                    {step === 1 ? (
+                        <form onSubmit={handleLogin}>
+                            {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
+                            <div className="auth-form-group">
+                                <label>E-posta Adresi</label>
+                                <input
+                                    type="email"
+                                    className="auth-input"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="ornek@email.com"
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
+                            <div className="auth-form-group">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                                    <label style={{ margin: 0 }}>Şifre</label>
+                                    <span
+                                        className="auth-switch-link"
+                                        style={{ fontSize: '13px', marginLeft: 0, fontWeight: '500' }}
+                                        onClick={() => setCurrentView('forgotPassword')}
+                                    >
+                                        Şifremi Unuttum
+                                    </span>
+                                </div>
+                                <input
+                                    type="password"
+                                    className="auth-input"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
+
+                            <button type="submit" className="auth-submit-btn" disabled={loading}>
+                                {loading ? 'GİRİŞ YAPILIYOR...' : 'GİRİŞ YAP'}
+                            </button>
+                        </form>
+                    ) : (
+                        <form onSubmit={handleVerifyOTP}>
+                            {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
+                            <div className="auth-form-group">
+                                <label>Doğrulama Kodu</label>
+                                <input
+                                    type="text"
+                                    className="auth-input"
+                                    value={otp}
+                                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').substring(0, 6))}
+                                    placeholder="000000"
+                                    maxLength={6}
+                                    style={{ textAlign: 'center', fontSize: '24px', letterSpacing: '8px', fontWeight: 'bold' }}
+                                    required
+                                    disabled={loading}
+                                />
+                                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: '8px', textAlign: 'center' }}>
+                                    Kodun geçerlilik süresi 10 dakikadır.
+                                </p>
+                            </div>
+
+                            <button type="submit" className="auth-submit-btn" disabled={loading}>
+                                {loading ? 'DOĞRULANIYOR...' : 'KODU ONAYLA'}
+                            </button>
+
+                            <div style={{ textAlign: 'center', marginTop: '15px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                <span className="auth-switch-link" style={{ fontSize: '13px', color: 'var(--accent-primary)' }} onClick={handleResendOTP}>
+                                    Yeniden Kod Gönder
+                                </span>
+                                <span className="auth-switch-link" style={{ fontSize: '13px' }} onClick={() => setStep(1)}>
+                                    Bilgilerimi Değiştir
                                 </span>
                             </div>
-                            <input
-                                type="password"
-                                className="auth-input"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                                required
-                                disabled={loading}
-                            />
-                        </div>
-
-                        <button type="submit" className="auth-submit-btn" disabled={loading}>
-                            {loading ? 'GİRİŞ YAPILIYOR...' : 'GİRİŞ YAP'}
-                        </button>
-                    </form>
+                        </form>
+                    )}
 
                     <p className="auth-switch-text">
                         Hesabınız yok mu?

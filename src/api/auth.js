@@ -38,3 +38,24 @@ export const updateProfile = async (details) => {
     const response = await apiClient.put('/auth/updatedetails', details);
     return response.data.data;
 };
+
+/**
+ * Verify OTP code
+ * @param {string} email
+ * @param {string} code
+ * @returns {Promise}
+ */
+export const verifyCode = async (email, code) => {
+    const response = await apiClient.post('/auth/verify', { email, code });
+    return response.data;
+};
+
+/**
+ * Resend OTP code
+ * @param {string} email
+ * @returns {Promise}
+ */
+export const resendOtpCode = async (email) => {
+    const response = await apiClient.post('/auth/resend-code', { email });
+    return response.data;
+};
