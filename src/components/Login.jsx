@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/gamonk_logo.png';
 import './Auth.css';
 
 // Import local images from the application
@@ -81,7 +81,7 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                         <img
                             key={idx}
                             src={item.img}
-                            alt="FeedTools Showcase"
+                            alt="Gamonk Showcase"
                             className={`auth-slider-img ${idx === currentSlide ? 'active' : ''}`}
                         />
                     ))}
@@ -92,11 +92,11 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                 {/* Right Side: Login Form */}
                 <div className="auth-form-container">
                     <div className="auth-logo-top">
-                        <img src={logo} alt="FeedTools Logo" />
+                        <img src={logo} alt="Gamonk Logo" />
                     </div>
 
                     <h2 className="auth-form-title">Giriş Yap</h2>
-                    <p className="auth-form-subtitle">FeedTools hesabınıza giriş yaparak favori oyunlarınıza erişmeye devam edin.</p>
+                    <p className="auth-form-subtitle">Gamonk hesabınıza giriş yaparak favori oyunlarınıza erişmeye devam edin.</p>
 
                     <form onSubmit={handleLogin}>
                         {error && <div className="auth-error-message" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}

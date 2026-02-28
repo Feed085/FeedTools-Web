@@ -157,7 +157,7 @@ const Home = () => {
                             text={t('hero', 'action1')}
                             variant="primary"
                             icon={<CompassIcon size={24} color="white" strokeWidth={1} style={{ transform: 'translateY(1.7px)' }} />}
-                            onClick={() => window.open('https://feedtools.app/download', '_blank')}
+                            onClick={() => window.open('https://gamonk.app/download', '_blank')}
                         />
                         <ModernButton
                             text={t('hero', 'action2')}

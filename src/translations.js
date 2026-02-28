@@ -11,18 +11,18 @@ export const translations = {
             register: "KAYIT OL"
         },
         hero: {
-            badge: ["Sınırsız Eğlence", "Hızlı Kurulum", "Geniş Kütüphane", "FeedTools Güvencesiyle"],
+            badge: ["Sınırsız Eğlence", "Hızlı Kurulum", "Geniş Kütüphane", "Gamonk Güvencesiyle"],
             title1: "Oyun Dünyasına",
-            title2: "FeedTools",
+            title2: "Gamonk",
             title3: "ile Adım At",
             subtitle: "Steam kütüphanenizi en verimli şekilde yönetin. Aylık özel abonelik paketlerimizle geniş oyun arşivlerine düşük maliyetle erişin. Favori oyunlarınıza anında ulaşın, kütüphanenizi tek bir tıkla zenginleştirmenin ve sınırsız eğlencenin tadını çıkarın.",
             action1: "Hemen Keşfet",
             action2: "Paketleri İncele"
         },
         promo: {
-            badge: "NEDEN FEEDTOOLS?",
+            badge: "NEDEN GAMONK?",
             title: "Kütüphanenizi Tek Tıkla Genişletin",
-            subtitle: "FeedTools ile binlerce oyuna en güvenli ve hızlı şekilde erişin.",
+            subtitle: "Gamonk ile binlerce oyuna en güvenli ve hızlı şekilde erişin.",
             feature1: "Sınırsız Kütüphane",
             feature1_desc: "Binlerce oyundan oluşan kataloğumuza anında erişim sağlayın.",
             feature2: "Güvenli Altyapı",
@@ -31,9 +31,9 @@ export const translations = {
             feature3_desc: "Herhangi bir sorunuz olduğunda ekibimiz her zaman yanınızda."
         },
         footer: {
-            description: "Güvenilir ve şeffaf oyun platformu. FeedTools ile en güncel oyun kütüphanelerine, bypass çözümlerine ve topluluk destekli rehberlere saniyeler içinde erişin. Sınırlarını bütçen belirlemesin, gönül rahatlığıyla oyna.",
+            description: "Güvenilir ve şeffaf oyun platformu. Gamonk ile en güncel oyun kütüphanelerine, bypass çözümlerine ve topluluk destekli rehberlere saniyeler içinde erişin. Sınırlarını bütçen belirlemesin, gönül rahatlığıyla oyna.",
             contact: "Bize Ulaş",
-            copyright: "© 2026 FeedTools Tüm hakları saklıdır.",
+            copyright: "© 2026 Gamonk Tüm hakları saklıdır.",
             privacy: "Gizlilik",
             terms: "Kullanım Şartları"
         }
@@ -50,18 +50,18 @@ export const translations = {
             register: "REGISTER"
         },
         hero: {
-            badge: ["Unlimited Fun", "Fast Setup", "Wide Library", "With FeedTools Assurance"],
+            badge: ["Unlimited Fun", "Fast Setup", "Wide Library", "With Gamonk Assurance"],
             title1: "Step Into",
-            title2: "FeedTools",
+            title2: "Gamonk",
             title3: "Gaming World",
             subtitle: "Manage your Steam library most efficiently. Access large game archives at low cost with our monthly subscription packages. Reach your favorite games instantly, enjoy enriching your library with a single click and unlimited fun.",
             action1: "Explore Now",
             action2: "View Packages"
         },
         promo: {
-            badge: "WHY FEEDTOOLS?",
+            badge: "WHY GAMONK?",
             title: "Expand Your Library with One Click",
-            subtitle: "Access thousands of games safely and quickly with FeedTools.",
+            subtitle: "Access thousands of games safely and quickly with Gamonk.",
             feature1: "Unlimited Library",
             feature1_desc: "Get instant access to our catalog of thousands of games.",
             feature2: "Secure Infrastructure",
@@ -70,9 +70,9 @@ export const translations = {
             feature3_desc: "Our team is always there for you whenever you have a question."
         },
         footer: {
-            description: "Reliable and transparent gaming platform. Access the latest game libraries, bypass solutions, and community-supported guides in seconds with FeedTools. Don't let your budget define your limits, play with peace of mind.",
+            description: "Reliable and transparent gaming platform. Access the latest game libraries, bypass solutions, and community-supported guides in seconds with Gamonk. Don't let your budget define your limits, play with peace of mind.",
             contact: "Contact Us",
-            copyright: "© 2026 FeedTools All rights reserved.",
+            copyright: "© 2026 Gamonk All rights reserved.",
             privacy: "Privacy",
             terms: "Terms of Use"
         }
@@ -89,18 +89,18 @@ export const translations = {
             register: "REGISTRIEREN"
         },
         hero: {
-            badge: ["Unbegrenzter Spaß", "Schnelle Einrichtung", "Große Bibliothek", "Mit FeedTools Garantie"],
+            badge: ["Unbegrenzter Spaß", "Schnelle Einrichtung", "Große Bibliothek", "Mit Gamonk Garantie"],
             title1: "Treten Sie ein in die",
-            title2: "FeedTools",
+            title2: "Gamonk",
             title3: "Gaming-Welt",
             subtitle: "Verwalten Sie Ihre Steam-Bibliothek am effizientesten. Greifen Sie mit unseren monatlichen Abonnements kostengünstig auf große Spielarchive zu. Erreichen Sie Ihre Lieblingsspiele sofort und genießen Sie die Erweiterung Ihrer Bibliothek mit nur einem Klick und unbegrenztem Spaß.",
             action1: "Jetzt Entdecken",
             action2: "Pakete Ansehen"
         },
         promo: {
-            badge: "WARUM FEEDTOOLS?",
+            badge: "WARUM GAMONK?",
             title: "Erweitern Sie Ihre Bibliothek mit einem Klick",
-            subtitle: "Greifen Sie mit FeedTools sicher und schnell auf Tausende von Spielen zu.",
+            subtitle: "Greifen Sie mit Gamonk sicher und schnell auf Tausende von Spielen zu.",
             feature1: "Unbegrenzte Bibliothek",
             feature1_desc: "Erhalten Sie sofortigen Zugriff auf unseren Katalog mit Tausenden von Spielen.",
             feature2: "Sichere Infrastruktur",
@@ -109,9 +109,9 @@ export const translations = {
             feature3_desc: "Unser Team ist jederzeit für Sie da, wenn Sie Fragen haben."
         },
         footer: {
-            description: "Zuverlässige und transparente Gaming-Plattform. Greifen Sie mit FeedTools in Sekundenschnelle auf die neuesten Spielebibliotheken, Bypass-Lösungen und von der Community unterstützte Leitfäden zu. Lassen Sie Ihr Budget nicht Ihre Grenzen definieren, spielen Sie unbesorgt.",
+            description: "Zuverlässige und transparente Gaming-Plattform. Greifen Sie mit Gamonk in Sekundenschnelle auf die neuesten Spielebibliotheken, Bypass-Lösungen und von der Community unterstützte Leitfäden zu. Lassen Sie Ihr Budget nicht Ihre Grenzen definieren, spielen Sie unbesorgt.",
             contact: "Kontaktiere Uns",
-            copyright: "© 2026 FeedTools Alle Rechte vorbehalten.",
+            copyright: "© 2026 Gamonk Alle Rechte vorbehalten.",
             privacy: "Datenschutz",
             terms: "Nutzungsbedingungen"
         }
@@ -128,18 +128,18 @@ export const translations = {
             register: "S'INSCRIRE"
         },
         hero: {
-            badge: ["Divertissement Illimité", "Installation Rapide", "Large Bibliothèque", "Avec l'assurance FeedTools"],
+            badge: ["Divertissement Illimité", "Installation Rapide", "Large Bibliothèque", "Avec l'assurance Gamonk"],
             title1: "Entrez dans le monde",
-            title2: "FeedTools",
+            title2: "Gamonk",
             title3: "du Gaming",
             subtitle: "Gérez votre bibliothèque Steam le plus efficacement possible. Accédez à de larges archives de jeux à bas prix grâce à nos forfaits d'abonnement mensuels. Accédez instantanément à vos jeux préférés et profitez de l'enrichissement de votre bibliothèque en un seul clic et d'un divertissement illimité.",
             action1: "Explorer Maintenant",
             action2: "Voir les Forfaits"
         },
         promo: {
-            badge: "POURQUOI FEEDTOOLS ?",
+            badge: "POURQUOI GAMONK ?",
             title: "Élargissez votre bibliothèque en un clic",
-            subtitle: "Accédez à des milliers de jeux en toute sécurité et rapidité avec FeedTools.",
+            subtitle: "Accédez à des milliers de jeux en toute sécurité et rapidité avec Gamonk.",
             feature1: "Bibliothèque Illimitée",
             feature1_desc: "Accédez instantanément à notre catalogue de milliers de jeux.",
             feature2: "Infrastructure Sécurisée",
@@ -148,9 +148,9 @@ export const translations = {
             feature3_desc: "Notre équipe est toujours là pour vous dès que vous avez une question."
         },
         footer: {
-            description: "Plateforme de jeu fiable et transparente. Accédez aux dernières bibliothèques de jeux, solutions de contournement et guides communautaires en quelques secondes avec FeedTools. Ne laissez pas votre budget définir vos limites, jouez en toute sérénité.",
+            description: "Plateforme de jeu fiable et transparente. Accédez aux dernières bibliothèques de jeux, solutions de contournement et guides communautaires en quelques secondes avec Gamonk. Ne laissez pas votre budget définir vos limites, jouez en toute sérénité.",
             contact: "Contactez-Nous",
-            copyright: "© 2026 FeedTools Tous droits réservés.",
+            copyright: "© 2026 Gamonk Tous droits réservés.",
             privacy: "Confidentialité",
             terms: "Conditions d'Utilisation"
         }
@@ -167,18 +167,18 @@ export const translations = {
             register: "РЕГИСТРАЦИЯ"
         },
         hero: {
-            badge: ["Безграничное веселье", "Быстрая установка", "Огромная библиотека", "С гарантией FeedTools"],
+            badge: ["Безграничное веселье", "Быстрая установка", "Огромная библиотека", "С гарантией Gamonk"],
             title1: "Шагните в мир игр",
-            title2: "FeedTools",
+            title2: "Gamonk",
             title3: "вместе с нами",
             subtitle: "Управляйте своей библиотекой Steam максимально эффективно. Получите доступ к огромным архивам игр по низкой цене с нашими ежемесячными абонементами. Мгновенно находите свои любимые игры и наслаждайтесь расширением своей библиотеки в один клик и безграничным весельем.",
             action1: "Узнать больше",
             action2: "Посмотреть пакеты"
         },
         promo: {
-            badge: "ПОЧЕМУ FEEDTOOLS?",
+            badge: "ПОЧЕМУ GAMONK?",
             title: "Расширьте свою библиотеку в один клик",
-            subtitle: "Получите доступ к тысячам игр безопасно и быстро с FeedTools.",
+            subtitle: "Получите доступ к тысячам игр безопасно и быстро с Gamonk.",
             feature1: "Безлимитная библиотека",
             feature1_desc: "Мгновенный доступ к нашему каталогу из тысяч игр.",
             feature2: "Безопасная инфраструктура",
@@ -187,9 +187,9 @@ export const translations = {
             feature3_desc: "Наша команда всегда готова помочь вам по любому вопросу."
         },
         footer: {
-            description: "Надежная и прозрачная игровая платформа. Получите доступ к новейшим библиотекам игр, обходным решениям и руководствам сообщества за считанные секунды с помощью FeedTools. Пусть ваш бюджет не определяет ваши границы, играйте со спокойной душой.",
+            description: "Надежная и прозрачная игровая платформа. Получите доступ к новейшим библиотекам игр, обходным решениям и руководствам сообщества за считанные секунды с помощью Gamonk. Пусть ваш бюджет не определяет ваши границы, играйте со спокойной душой.",
             contact: "Связаться с нами",
-            copyright: "© 2026 FeedTools Все права защищены.",
+            copyright: "© 2026 Gamonk Все права защищены.",
             privacy: "Конфиденциальность",
             terms: "Условия использования"
         }

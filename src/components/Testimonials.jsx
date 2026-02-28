@@ -47,14 +47,14 @@ const Testimonials = () => {
             user: "s***e",
             date: "30.11.2025",
             rating: 5,
-            comment: "@feedStudio RE4 denuvo konusunda yardımcı oldular, adamlar yapıyor bu sporu."
+            comment: "@gamonkStudio RE4 denuvo konusunda yardımcı oldular, adamlar yapıyor bu sporu."
         },
         {
             id: 6,
             user: "m*****z",
             date: "30.11.2025",
             rating: 5,
-            comment: "@feedStudio Bu adamlar Türk uygulama yapmış, destek verin. Süper!"
+            comment: "@gamonkStudio Bu adamlar Türk uygulama yapmış, destek verin. Süper!"
         }
     ];
 
@@ -63,7 +63,7 @@ const Testimonials = () => {
             <div className="testimonials-container">
                 <div className="testimonials-header">
                     <h2 className="testimonials-title">Müşteri <span className="highlight">Yorumları</span></h2>
-                    <p className="testimonials-subtitle">Yüzlerce memnun kullanıcının FeedTools hakkındaki gerçek deneyimleri</p>
+                    <p className="testimonials-subtitle">Yüzlerce memnun kullanıcının Gamonk hakkındaki gerçek deneyimleri</p>
                 </div>
 
                 <div className="testimonials-grid">
@@ -95,7 +95,7 @@ const Testimonials = () => {
                 </div>
 
                 <div className="testimonials-footer">
-                    <button className="modern-button secondary-button" onClick={() => window.open('https://discord.gg/feedtools', '_blank')}>
+                    <button className="modern-button secondary-button" onClick={() => window.open('https://discord.gg/gamonk', '_blank')}>
                         TÜM YORUMLARI GÖR
                     </button>
                 </div>

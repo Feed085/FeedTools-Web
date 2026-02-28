@@ -31,7 +31,7 @@ const AppShowcase = () => {
         {
             id: 1,
             title: "Anasayfa",
-            desc: "FeedTools'un modern ve kullanıcı dostu arayüzü sizi karşılıyor. Tüm oyunları kolaylıkla keşfedebilir, favorilerinize ekleyebilirsiniz.",
+            desc: "Gamonk'un modern ve kullanıcı dostu arayüzü sizi karşılıyor. Tüm oyunları kolaylıkla keşfedebilir, favorilerinize ekleyebilirsiniz.",
             image: anaSayfaImg
         },
         {
@@ -70,7 +70,7 @@ const AppShowcase = () => {
             <div className="showcase-container">
                 <div className="showcase-header">
                     <h2 className="showcase-title">Uygulamayı <span className="highlight">Keşfet</span></h2>
-                    <p className="showcase-subtitle">FeedTools'un güçlü arayüzünü yakından tanıyın</p>
+                    <p className="showcase-subtitle">Gamonk'un güçlü arayüzünü yakından tanıyın</p>
                 </div>
 
                 <div className="showcase-grid">

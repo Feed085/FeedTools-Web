@@ -27,11 +27,11 @@ const FAQ = () => {
     const faqData = [
         {
             question: "Hesabım yasaklanır mı (Ban riski var mı)?",
-            answer: "FeedTools, Steam servisleriyle legal bir şekilde etkileşime giren manifest bazlı bir sistem kullanır. Dosya bütünlüğüne veya hile karşıtı (Anti-Cheat) sistemlere müdahale etmediği için güvenle kullanılabilir. Kullanıcı güvenliği bizim en büyük önceliğimizdir."
+            answer: "Gamonk, Steam servisleriyle legal bir şekilde etkileşime giren manifest bazlı bir sistem kullanır. Dosya bütünlüğüne veya hile karşıtı (Anti-Cheat) sistemlere müdahale etmediği için güvenle kullanılabilir. Kullanıcı güvenliği bizim en büyük önceliğimizdir."
         },
         {
-            question: "FeedTools nedir ve ne işe yarar?",
-            answer: "FeedTools, Steam kütüphanenizi yönetmenizi, eksik DLC'leri tamamlamanızı ve oyunları en verimli şekilde kütüphanenize eklemenizi sağlayan profesyonel bir araçtır. Tamamen kullanıcı dostu bir arayüzle kütüphane deneyiminizi üst seviyeye taşır."
+            question: "Gamonk nedir ve ne işe yarar?",
+            answer: "Gamonk, Steam kütüphanenizi yönetmenizi, eksik DLC'leri tamamlamanızı ve oyunları en verimli şekilde kütüphanenize eklemenizi sağlayan profesyonel bir araçtır. Tamamen kullanıcı dostu bir arayüzle kütüphane deneyiminizi üst seviyeye taşır."
         },
         {
             question: "Birden fazla Steam hesabında kullanabilir miyim?",
@@ -39,11 +39,11 @@ const FAQ = () => {
         },
         {
             question: "Oyunlar tüm DLC paketleri ile birlikte mi gelir?",
-            answer: "Evet, FeedTools aracılığıyla kütüphanenize dahil edilen oyunlar, o oyun için mevcut olan tüm indirilebilir içerikleri (DLC) kapsar. Tek tıkla eksiksiz bir deneyim yaşayabilirsiniz."
+            answer: "Evet, Gamonk aracılığıyla kütüphanenize dahil edilen oyunlar, o oyun için mevcut olan tüm indirilebilir içerikleri (DLC) kapsar. Tek tıkla eksiksiz bir deneyim yaşayabilirsiniz."
         },
         {
-            question: "FeedTools kullanmak için VPN gerekli mi?",
-            answer: "Hayır, FeedTools yerel ağınız üzerinden doğrudan Steam sunucuları ile haberleşir. VPN kullanmanıza gerek kalmadan, en yüksek indirme hızlarıyla kütüphanenizi güncelleyebilirsiniz."
+            question: "Gamonk kullanmak için VPN gerekli mi?",
+            answer: "Hayır, Gamonk yerel ağınız üzerinden doğrudan Steam sunucuları ile haberleşir. VPN kullanmanıza gerek kalmadan, en yüksek indirme hızlarıyla kütüphanenizi güncelleyebilirsiniz."
         },
         {
             question: "Teknik destek ve güncellemeler nasıl sağlanıyor?",

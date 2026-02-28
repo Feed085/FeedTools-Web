@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/gamonk_logo.png';
 import './Auth.css';
 
 // Import local images from the application
@@ -77,7 +77,7 @@ const Register = ({ setCurrentView }) => {
                         <img
                             key={idx}
                             src={item.img}
-                            alt="FeedTools Showcase"
+                            alt="Gamonk Showcase"
                             className={`auth-slider-img ${idx === currentSlide ? 'active' : ''}`}
                         />
                     ))}

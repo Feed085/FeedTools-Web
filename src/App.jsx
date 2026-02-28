@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
-import logo from './assets/logo.png';
+import logo from './assets/gamonk_logo.png';
 import Home from './components/Home';
 import Packages from './components/Packages';
 import Gallery from './components/Gallery';
@@ -113,7 +113,7 @@ function App() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
           <div className="nav-left">
             <img src={logo} alt="Logo" className="nav-logo" />
-            <span className="nav-brand">FEEDTOOLS</span>
+            <span className="nav-brand">GAMONK</span>
           </div>
           <div className="nav-center" ref={navCenterRef} style={{ position: 'relative' }}>
             <div className="nav-indicator" style={indicatorStyle}></div>
@@ -155,7 +155,7 @@ function App() {
               className={`nav-link ${activeTab === 'support' ? 'active' : ''}`}
               onClick={() => {
                 setActiveTab('support');
-                window.open('https://discord.gg/feedtools', '_blank');
+                window.open('https://discord.gg/gamonk', '_blank');
               }}
             >
               {t('nav', 'support')}
@@ -164,7 +164,7 @@ function App() {
           <div className="nav-right" style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             {isLoggedIn ? (
               <>
-                <button className="modern-button primary-button" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => window.open('https://feedtools.app/download', '_blank')}>
+                <button className="modern-button primary-button" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => window.open('https://gamonk.app/download', '_blank')}>
                   {t('nav', 'download')}
                 </button>
                 <button
