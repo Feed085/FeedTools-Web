@@ -46,7 +46,11 @@ const Register = ({ setCurrentView }) => {
             setCurrentView('login');
         } catch (err) {
             console.error('Registration error:', err);
-            setError(err.response?.data?.error || err.response?.data?.message || 'Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+            const errorMsg = err.response?.data?.error ||
+                err.response?.data?.message ||
+                (err.response?.data?.errors && err.response?.data?.errors[0]?.msg) ||
+                'Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.';
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }

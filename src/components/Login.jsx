@@ -50,7 +50,11 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
             }
         } catch (err) {
             console.error('Login error:', err);
-            setError(err.response?.data?.error || err.response?.data?.message || 'Giriş yapılamadı. Lütfen e-posta ve şifrenizi kontrol edin.');
+            const errorMsg = err.response?.data?.error ||
+                err.response?.data?.message ||
+                (err.response?.data?.errors && err.response?.data?.errors[0]?.msg) ||
+                'Giriş yapılamadı. Lütfen e-posta ve şifrenizi kontrol edin.';
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }
