@@ -12,6 +12,7 @@ import { getMe } from './api/auth';
 import { useLanguage } from './LanguageContext';
 import { languages } from './translations';
 import GlobeIcon from './components/GlobeIcon';
+import Notification from './components/Notification';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -28,6 +29,13 @@ function App() {
 
   // Tab mapping for indicator
   const [activeTab, setActiveTab] = useState('home');
+
+  // Notification state
+  const [notification, setNotification] = useState({ message: '', type: 'success' });
+
+  const showNotification = (message, type = 'success') => {
+    setNotification({ message, type });
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -98,9 +106,9 @@ function App() {
       case 'home': return <Home />;
       case 'packages': return <Packages />;
       case 'gallery': return <Gallery />;
-      case 'login': return <Login setIsLoggedIn={setIsLoggedIn} setCurrentView={setCurrentView} />;
-      case 'register': return <Register setCurrentView={setCurrentView} />;
-      case 'forgotPassword': return <ForgotPassword setCurrentView={setCurrentView} />;
+      case 'login': return <Login setIsLoggedIn={setIsLoggedIn} setCurrentView={setCurrentView} showNotification={showNotification} />;
+      case 'register': return <Register setCurrentView={setCurrentView} showNotification={showNotification} />;
+      case 'forgotPassword': return <ForgotPassword setCurrentView={setCurrentView} showNotification={showNotification} />;
       default: return <Home />;
     }
   };
@@ -231,6 +239,11 @@ function App() {
         </div>
         {!isAuthView && <Footer />}
       </div>
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        onClose={() => setNotification({ ...notification, message: '' })}
+      />
     </div>
   );
 }

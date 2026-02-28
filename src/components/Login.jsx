@@ -20,7 +20,7 @@ const sliderData = [
     { img: fifaImg, colors: ['rgba(34, 197, 94, 0.8)', 'rgba(2, 132, 199, 0.8)', 'rgba(255, 255, 255, 0.5)'] } // FIFA: Pitch Green, Electric Blue, Stadium White
 ];
 
-const Login = ({ setIsLoggedIn, setCurrentView }) => {
+const Login = ({ setIsLoggedIn, setCurrentView, showNotification }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,8 +45,10 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                 localStorage.setItem('token', data.token);
                 setIsLoggedIn(true);
                 setCurrentView('home');
+                showNotification("Giriş başarılı! Hoş geldiniz.", "success");
             } else {
                 setError('Geçersiz sunucu yanıtı. Token bulunamadı.');
+                showNotification('Geçersiz sunucu yanıtı. Token bulunamadı.', "error");
             }
         } catch (err) {
             console.error('Login error:', err);
@@ -55,6 +57,7 @@ const Login = ({ setIsLoggedIn, setCurrentView }) => {
                 (err.response?.data?.errors && err.response?.data?.errors[0]?.msg) ||
                 'Giriş yapılamadı. Lütfen e-posta ve şifrenizi kontrol edin.';
             setError(errorMsg);
+            showNotification(errorMsg, "error");
         } finally {
             setLoading(false);
         }

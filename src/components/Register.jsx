@@ -20,7 +20,7 @@ const sliderData = [
     { img: spidermanImg, colors: ['rgba(239, 68, 68, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(14, 165, 233, 0.6)'] } // Spiderman: Vibrant Red, Deep Blue, Light Blue
 ];
 
-const Register = ({ setCurrentView }) => {
+const Register = ({ setCurrentView, showNotification }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,7 +42,7 @@ const Register = ({ setCurrentView }) => {
 
         try {
             await register({ username, email, password });
-            alert("Kayıt başarılı! Lütfen giriş yapın.");
+            showNotification("Kayıt başarılı! Lütfen giriş yapın.", "success");
             setCurrentView('login');
         } catch (err) {
             console.error('Registration error:', err);
@@ -50,6 +50,7 @@ const Register = ({ setCurrentView }) => {
                 err.response?.data?.message ||
                 (err.response?.data?.errors && err.response?.data?.errors[0]?.msg) ||
                 'Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.';
+            showNotification(errorMsg, "error");
             setError(errorMsg);
         } finally {
             setLoading(false);
