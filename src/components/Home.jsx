@@ -5,9 +5,7 @@ import PackagesIcon from './PackagesIcon';
 import { useLanguage } from '../LanguageContext';
 
 const videos = [
-    '/videos/rdr2.mp4',
-    '/videos/tlou.mp4',
-    '/videos/gow.mp4'
+    '/videos/Feed Tools Background Video.mp4'
 ];
 
 // Lazy load heavy components
@@ -129,6 +127,7 @@ const Home = () => {
                             key={videos[videoIndex]}
                             autoPlay
                             muted
+                            loop
                             playsInline
                             onEnded={handleVideoEnd}
                             className="bg-video"
