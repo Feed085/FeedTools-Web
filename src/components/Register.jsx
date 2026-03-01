@@ -3,21 +3,19 @@ import logo from '../assets/gamonk_logo.png';
 import './Auth.css';
 
 // Import local images from the application
-import fifaImg from '../assets/loginheroslider/FIFA 26.jpg';
-import gtaImg from '../assets/loginheroslider/GtaV.jpg';
-import re4Img from '../assets/loginheroslider/RE4.jpg';
-import spidermanImg from '../assets/loginheroslider/Spiderman2.jpeg';
-import tlouImg from '../assets/loginheroslider/TLOU2.jpg';
-import unchartedImg from '../assets/loginheroslider/Uncharted.jpg';
+import heroImg1 from '../assets/loginheroslider/logHeroSlider1.jpeg';
+import heroImg2 from '../assets/loginheroslider/logHeroSlider2.jpeg';
+import heroImg3 from '../assets/loginheroslider/logHeroSlider3.jpeg';
+import heroImg4 from '../assets/loginheroslider/logHeroSlider4.jpeg';
+import heroImg5 from '../assets/loginheroslider/logHeroSlider5.jpeg';
 import { register, verifyCode, resendOtpCode } from '../api/auth';
 
 const sliderData = [
-    { img: tlouImg, colors: ['rgba(22, 101, 52, 0.7)', 'rgba(100, 116, 139, 0.7)', 'rgba(255, 255, 255, 0.4)'] }, // TLOU2: Forest Green, Muted Gray, White Fog
-    { img: re4Img, colors: ['rgba(234, 88, 12, 0.8)', 'rgba(153, 27, 27, 0.75)', 'rgba(202, 138, 4, 0.6)'] }, // RE4: Fire Orange, Blood Red, Eerie Yellow
-    { img: unchartedImg, colors: ['rgba(14, 116, 144, 0.8)', 'rgba(30, 58, 138, 0.8)', 'rgba(245, 158, 11, 0.6)'] }, // Uncharted: Bright Ocean Teal, Deep Blue, Sunlight Gold
-    { img: fifaImg, colors: ['rgba(34, 197, 94, 0.8)', 'rgba(2, 132, 199, 0.8)', 'rgba(255, 255, 255, 0.5)'] }, // FIFA: Pitch Green, Electric Blue, Stadium White
-    { img: gtaImg, colors: ['rgba(34, 197, 94, 0.75)', 'rgba(59, 130, 246, 0.75)', 'rgba(245, 158, 11, 0.65)'] }, // GTA V: Bright Green, Sky Blue, Sunset Orange
-    { img: spidermanImg, colors: ['rgba(239, 68, 68, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(14, 165, 233, 0.6)'] } // Spiderman: Vibrant Red, Deep Blue, Light Blue
+    { img: heroImg1, colors: ['rgba(14, 116, 144, 0.8)', 'rgba(30, 58, 138, 0.8)', 'rgba(245, 158, 11, 0.6)'] },
+    { img: heroImg2, colors: ['rgba(239, 68, 68, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(14, 165, 233, 0.6)'] },
+    { img: heroImg3, colors: ['rgba(34, 197, 94, 0.75)', 'rgba(59, 130, 246, 0.75)', 'rgba(245, 158, 11, 0.65)'] },
+    { img: heroImg4, colors: ['rgba(234, 88, 12, 0.8)', 'rgba(153, 27, 27, 0.75)', 'rgba(202, 138, 4, 0.6)'] },
+    { img: heroImg5, colors: ['rgba(22, 101, 52, 0.7)', 'rgba(100, 116, 139, 0.7)', 'rgba(255, 255, 255, 0.4)'] }
 ];
 
 const Register = ({ setCurrentView, showNotification }) => {
