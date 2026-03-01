@@ -3,11 +3,11 @@ import logo from '../assets/gamonk_logo.png';
 import './Auth.css';
 
 // Import local images from the application
-import heroImg1 from '../assets/loginheroslider/logHeroSlider1.jpeg';
-import heroImg2 from '../assets/loginheroslider/logHeroSlider2.jpeg';
-import heroImg3 from '../assets/loginheroslider/logHeroSlider3.jpeg';
-import heroImg4 from '../assets/loginheroslider/logHeroSlider4.jpeg';
-import heroImg5 from '../assets/loginheroslider/logHeroSlider5.jpeg';
+import heroImg1 from '../assets/loginheroslider/logHeroSlide1.jpeg';
+import heroImg2 from '../assets/loginheroslider/logHeroSlide2.jpeg';
+import heroImg3 from '../assets/loginheroslider/logHeroSlide3.jpeg';
+import heroImg4 from '../assets/loginheroslider/logHeroSlide4.jpeg';
+import heroImg5 from '../assets/loginheroslider/logHeroSlide5.jpeg';
 import { register, verifyCode, resendOtpCode } from '../api/auth';
 
 const sliderData = [

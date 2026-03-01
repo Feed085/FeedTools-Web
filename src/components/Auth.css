@@ -118,15 +118,14 @@
 }
 
 .auth-slider-img.active {
-    opacity: 0.6;
+    opacity: 1;
     transform: scale(1);
 }
 
 .auth-slider-overlay {
     position: absolute;
     inset: 0;
-    /* Soften gradient slightly so extreme left/bottom edges aren't overwhelmed */
-    background: linear-gradient(to right, rgba(15, 17, 26, 0.6) 0%, rgba(15, 17, 26, 0.1) 50%, rgba(15, 17, 26, 1) 100%);
+    /* Removed gradient overlay to show clear photos */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
